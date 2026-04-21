@@ -19,6 +19,13 @@ class UTTTEnv(gym.Env):
 
         self.action_space = spaces.Discrete(81)
 
+    # Ensure only legal moves are available for the learner to choose from
+    def action_masks(self):
+        mask = np.zeros(81, dtype=bool)
+        for br, bc, lr, lc in self.game.get_legal_moves():
+            mask[br * 27 + bc * 9 + lr * 3 + lc] = True
+        return mask
+
     def _get_obs(self):
         board_flat = self.game.board.flatten().astype(np.int8)
 
