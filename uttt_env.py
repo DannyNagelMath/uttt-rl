@@ -46,13 +46,6 @@ class UTTTEnv(gym.Env):
             mask.flatten()
         ])
     
-    # def reset(self, seed=None, options=None):
-    #     super().reset(seed=seed)
-    #     print("super reset done")
-    #     self.game.reset()
-    #     print("game reset done")
-    #     return self._get_obs(), {}
-
     def reset(self, seed=None, options=None):
         super().reset(seed=seed)
         self.game.reset()
