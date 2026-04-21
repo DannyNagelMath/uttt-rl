@@ -66,4 +66,18 @@ class UTTTEnv(gym.Env):
 
         _, reward, terminated, truncated, info = self.game.step((br, bc, lr, lc))
 
+        # Used for random opponent training
+        if not terminated:
+            opponent_moves = self.game.get_legal_moves()
+            opponent_action = opponent_moves[np.random.randint(len(opponent_moves))]
+            _, reward, terminated, truncated, info = self.game.step(opponent_action)
+
+            # Game ended on opponents turn
+            if terminated:      
+                if self.game.winner == 0:
+                    reward = 0.5  # draw
+                else:
+                    reward = -1.0  # opponent won
+        # End random opponent training
+
         return self._get_obs(), reward, terminated, truncated, info
