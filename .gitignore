@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .env
 project_context.md
+models*/
+evaluate_results*.csv
