@@ -64,7 +64,11 @@ class SelfPlayEnv(gym.Env):
 
         return self._agent_obs(), {}
 
+    SUB_REWARD = 0.1  # magnitude of intermediate sub-board reward
+
     def step(self, action):
+        sub_before = self.game.sub_board_winners.copy()
+
         # Apply the agent's chosen action
         br = action // 27
         bc = (action % 27) // 9
@@ -77,16 +81,33 @@ class SelfPlayEnv(gym.Env):
         # No sign flip needed regardless of which side the agent is playing.
 
         if not terminated:
+            # Reward for sub-boards the agent just claimed
+            agent_mark = self.agent_side
+            newly_won = np.sum(
+                (self.game.sub_board_winners == agent_mark) & (sub_before != agent_mark)
+            )
+            reward += self.SUB_REWARD * newly_won
+
+            sub_before_opp = self.game.sub_board_winners.copy()
             self._opponent_move()
+
+            if not self.game.done:
+                # Penalise for sub-boards the opponent just claimed
+                opp_mark = -self.agent_side
+                newly_won_by_opp = np.sum(
+                    (self.game.sub_board_winners == opp_mark) & (sub_before_opp != opp_mark)
+                )
+                reward -= self.SUB_REWARD * newly_won_by_opp
+
             # Check if opponent ended the game
             if self.game.done:
                 terminated = True
                 if self.game.winner == 0:
-                    reward = 0.5   # draw
+                    reward = 0.5
                 elif self.game.winner == self.agent_side:
-                    reward = 1.0   # agent won (shouldn't reach here, but safe)
+                    reward = 1.0
                 else:
-                    reward = -1.0  # opponent won
+                    reward = -1.0
 
         return self._agent_obs(), reward, terminated, truncated, info
 

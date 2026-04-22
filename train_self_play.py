@@ -12,7 +12,7 @@ from self_play_env import SelfPlayEnv
 SEED_MODEL_PATH    = "uttt_maskable_ppo.zip"
 MODELS_DIR         = "models"
 STEPS_PER_ITER     = 500_000   # training steps between checkpoints
-NUM_ITERATIONS     = 10        # total iterations  (5M steps)
+NUM_ITERATIONS     = 5         # total iterations  (2.5M steps)
 PROGRESS_INTERVAL  = 1_000     # tqdm update frequency (steps)
 
 SEED_SAMPLE_PROB   = 0.25      # guaranteed minimum probability of facing seed
