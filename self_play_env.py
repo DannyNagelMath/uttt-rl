@@ -64,7 +64,8 @@ class SelfPlayEnv(gym.Env):
 
         return self._agent_obs(), {}
 
-    SUB_REWARD = 0.1  # magnitude of intermediate sub-board reward
+    SUB_REWARD   = 0.3    # reward per sub-board won / lost
+    STEP_PENALTY = -0.005 # per-step cost to encourage faster wins
 
     def step(self, action):
         sub_before = self.game.sub_board_winners.copy()
@@ -87,6 +88,7 @@ class SelfPlayEnv(gym.Env):
                 (self.game.sub_board_winners == agent_mark) & (sub_before != agent_mark)
             )
             reward += self.SUB_REWARD * newly_won
+            reward += self.STEP_PENALTY
 
             sub_before_opp = self.game.sub_board_winners.copy()
             self._opponent_move()
