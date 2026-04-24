@@ -13,17 +13,20 @@ set ENTRY=mlp\play.py
 echo Building release with model: %MODEL%
 echo.
 
+REM Copy model to a fixed name so play.py can find it inside the bundle
+copy /Y "%MODEL%" best_model.zip
+
 pyinstaller ^
   --name uttt-agent ^
   --onedir ^
   --windowed ^
-  --add-data "%MODEL%;." ^
-  --add-data "uttt_game.py;." ^
-  --add-data "mlp\uttt_env.py;." ^
-  --add-data "mlp\utils.py;." ^
+  --runtime-hook hook_torch_dll.py ^
+  --add-data "best_model.zip;." ^
   --paths mlp ^
   --paths . ^
   %ENTRY%
+
+del best_model.zip
 
 echo.
 if exist dist\uttt-agent\uttt-agent.exe (

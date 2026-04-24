@@ -85,20 +85,25 @@ cnn/                  — CNN policy (in development)
 
 ## Play it yourself
 
-### Option 1: Windows installer (recommended)
+Requires **Python 3.10+** — download from [python.org](https://www.python.org/downloads/) if needed.
 
-Download `uttt-agent-setup.exe` from the [Releases page](../../releases/latest) and run it. No Python required.
+### Windows (one-click)
 
-### Option 2: Run from source
+1. Clone or [download the repo](../../archive/refs/heads/main.zip) and unzip it
+2. Double-click **`play.bat`**
+
+First run installs dependencies automatically (~3 minutes). Subsequent runs launch immediately.
+
+### Manual / other platforms
 
 ```bash
 git clone https://github.com/DannyNagelMath/uttt-rl
 cd uttt-rl
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate      # Windows
+# source venv/bin/activate  # macOS / Linux
 pip install -r requirements.txt
-cd mlp
-python play.py
+python mlp/play.py
 ```
 
 ---

@@ -7,3 +7,6 @@ models*/
 **/evaluate_results*.csv
 **/training_metrics.csv
 **/training_metrics.png
+build/
+dist/
+*.spec
