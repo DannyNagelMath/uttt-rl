@@ -50,22 +50,11 @@ Run 1 uncovered two bugs:
 1. **ELO formula error** — `K * total * (score − expected)` inflated every shift by 200×, producing ±10k ELO swings. Fixed to standard `K * (score − expected)`.
 2. **Policy collapse** — three compounding causes diagnosed and fixed independently (see above).
 
-### Diagnostic plots
-
-Training diagnostics are logged every 10k steps and visualized in `plot_training.py`:
-
-- Episode reward mean — is the policy improving?
-- Explained variance — is the value function converging?
-- Policy entropy — is the model collapsing to a fixed exploit strategy?
-- Win rate vs random — is general UTTT skill being retained?
-
-![Training diagnostics](docs/training_diagnostics.png)
-
 ---
 
 ## Key finding
 
-After four runs of reward shaping experiments, a core limitation is architectural: an MLP sees a **flat 109-dimensional vector** and has not learned spatial board patterns (blocking threats, two-in-a-row setups) regardless of reward structure.
+After four runs of reward shaping experiments, a core limitation is architectural: an MLP sees a **flat 109-dimensional vector** and has not learned spatial board patterns (blocking threats, two-in-a-row setups).
 
 **Next step**: CNN policy — reshape the board into a 9×9 multi-channel image so spatial patterns become learnable convolution features.
 
