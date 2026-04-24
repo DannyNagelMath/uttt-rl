@@ -65,7 +65,7 @@ Training diagnostics are logged every 10k steps and visualized in `plot_training
 
 ## Key finding
 
-After four runs of reward shaping experiments, the core limitation is architectural: an MLP sees a **flat 109-dimensional vector** and cannot learn spatial board patterns (blocking threats, two-in-a-row setups) regardless of reward structure.
+After four runs of reward shaping experiments, a core limitation is architectural: an MLP sees a **flat 109-dimensional vector** and has not learned spatial board patterns (blocking threats, two-in-a-row setups) regardless of reward structure.
 
 **Next step**: CNN policy — reshape the board into a 9×9 multi-channel image so spatial patterns become learnable convolution features.
 
