@@ -1,6 +1,13 @@
 import sys, os
-_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.dirname(_DIR))  # project root -> finds uttt_game
+
+if getattr(sys, 'frozen', False):
+    # PyInstaller bundle: modules are pre-collected; data files live in sys._MEIPASS
+    _BUNDLE_DIR = sys._MEIPASS
+    sys.path.insert(0, _BUNDLE_DIR)
+else:
+    _DIR = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, os.path.dirname(_DIR))  # project root -> finds uttt_game
+    sys.path.insert(0, _DIR)                   # mlp/ -> finds uttt_env, utils
 
 import numpy as np
 import pygame
@@ -36,7 +43,10 @@ C_STATUS_BG   = (20,  20,  20)
 STATUS_H      = 40           # height of status bar at bottom
 TOTAL_H       = WINDOW_SIZE + STATUS_H
 
-MODEL_PATH    = r"C:\Users\stans\Projects\uttt-rl\best_models\run4_selfplay_13500000.zip"
+if getattr(sys, 'frozen', False):
+    MODEL_PATH = os.path.join(sys._MEIPASS, "best_model.zip")
+else:
+    MODEL_PATH = os.path.join(os.path.dirname(_DIR), "best_models", "run2_selfplay_500000.zip")
 
 
 def sub_board_origin(br, bc):
