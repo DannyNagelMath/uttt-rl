@@ -4,8 +4,6 @@ A self-play reinforcement learning agent that learns to play **Ultimate Tic-Tac-
 
 ![Gameplay screenshot](docs/readme_screenshot_1.png)
 
-**[Download the Windows installer from Releases](../../releases/latest)** to play against the agent — no Python installation required.
-
 ---
 
 ## What is Ultimate Tic-Tac-Toe?
