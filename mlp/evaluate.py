@@ -11,7 +11,10 @@ Output:
   - Full results saved to CSV (OUTPUT_FILE)
 """
 
-import os
+import sys, os
+_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(_DIR))  # project root -> finds uttt_game
+
 import re
 import csv
 import random
@@ -27,9 +30,9 @@ from utils import flip_obs
 NUM_GAMES     = 100          # games per matchup (each side); increase for tighter estimates
 INITIAL_ELO   = 1000         # starting ELO for all models
 K_FACTOR      = 32           # ELO update rate
-MODELS_DIR    = "models/"
-SEED_MODEL    = "uttt_maskable_ppo.zip"
-OUTPUT_FILE   = "evaluate_results.csv"
+MODELS_DIR    = os.path.join(_DIR, "models")
+SEED_MODEL    = os.path.join(_DIR, "uttt_maskable_ppo.zip")
+OUTPUT_FILE   = os.path.join(_DIR, "evaluate_results.csv")
 
 # ── Model loading ─────────────────────────────────────────────────────────────
 

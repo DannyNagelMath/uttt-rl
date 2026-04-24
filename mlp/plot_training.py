@@ -22,8 +22,9 @@ try:
 except ImportError:
     sys.exit("matplotlib is required: pip install matplotlib")
 
-METRICS_FILE = "training_metrics.csv"
-OUTPUT_FILE  = "training_metrics.png"
+_DIR         = os.path.dirname(os.path.abspath(__file__))
+METRICS_FILE = os.path.join(_DIR, "training_metrics.csv")
+OUTPUT_FILE  = os.path.join(_DIR, "training_metrics.png")
 
 
 def load_csv(path):

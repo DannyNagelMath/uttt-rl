@@ -1,4 +1,7 @@
-import os
+import sys, os
+_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(_DIR))  # project root -> finds uttt_game
+
 import csv
 import time
 import random as rnd
@@ -14,8 +17,8 @@ from uttt_env import UTTTEnv
 from utils import flip_obs
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-SEED_MODEL_PATH    = "uttt_maskable_ppo.zip"
-MODELS_DIR         = "models"
+SEED_MODEL_PATH    = os.path.join(_DIR, "uttt_maskable_ppo.zip")
+MODELS_DIR         = os.path.join(_DIR, "models")
 STEPS_PER_ITER     = 1_500_000  # training steps between checkpoints
 NUM_ITERATIONS     = 10         # total iterations  (15M steps)
 PROGRESS_INTERVAL  = 1_000      # tqdm update frequency (steps)
@@ -24,7 +27,7 @@ SEED_SAMPLE_PROB   = 0.25       # guaranteed minimum probability of facing seed
 WIN_RATE_THRESHOLD = 0.55       # min score vs pool to add checkpoint to pool
 GATE_GAMES         = 40         # games per side (80 total) for gating eval
 
-METRICS_FILE       = "training_metrics.csv"
+METRICS_FILE       = os.path.join(_DIR, "training_metrics.csv")
 LOG_INTERVAL       = 10_000     # steps between metric log rows
 EVAL_INTERVAL      = 100_000    # steps between vs-random win-rate evals
 EVAL_GAMES         = 20         # games for quick vs-random eval (10 as X, 10 as O)

@@ -1,3 +1,7 @@
+import sys, os
+_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(_DIR))  # project root -> finds uttt_game
+
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces

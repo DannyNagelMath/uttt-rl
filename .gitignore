@@ -4,4 +4,6 @@ __pycache__/
 .env
 project_context.md
 models*/
-evaluate_results*.csv
+**/evaluate_results*.csv
+**/training_metrics.csv
+**/training_metrics.png

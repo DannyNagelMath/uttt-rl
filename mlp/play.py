@@ -1,6 +1,9 @@
+import sys, os
+_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(_DIR))  # project root -> finds uttt_game
+
 import numpy as np
 import pygame
-import sys
 
 from sb3_contrib import MaskablePPO
 from uttt_game import UTTTGame
@@ -33,7 +36,7 @@ C_STATUS_BG   = (20,  20,  20)
 STATUS_H      = 40           # height of status bar at bottom
 TOTAL_H       = WINDOW_SIZE + STATUS_H
 
-MODEL_PATH    = r"C:\Users\stans\Projects\uttt-rl\models\uttt_selfplay_500000.zip"
+MODEL_PATH    = r"C:\Users\stans\Projects\uttt-rl\best_models\run4_selfplay_13500000.zip"
 
 
 def sub_board_origin(br, bc):
