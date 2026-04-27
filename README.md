@@ -90,7 +90,7 @@ Requires **Python 3.10+** — download from [python.org](https://www.python.org/
 1. Clone or [download the repo](../../archive/refs/heads/main.zip) and unzip it
 2. Double-click **`play.bat`**
 
-First run installs dependencies automatically (~3 minutes). Subsequent runs launch immediately.
+First run installs dependencies automatically (~5 minutes). Subsequent runs launch immediately.
 
 ### Manual / other platforms
 
