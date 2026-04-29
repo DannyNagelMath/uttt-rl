@@ -1,7 +1,9 @@
 import sys, os
 _DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.dirname(_DIR))
+_ROOT = os.path.dirname(_DIR)
+sys.path.insert(0, _ROOT)
 sys.path.insert(0, _DIR)
+sys.path.insert(0, os.path.join(_ROOT, "cnn"))  # for cnn_env
 
 import csv
 import numpy as np

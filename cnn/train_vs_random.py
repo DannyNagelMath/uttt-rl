@@ -12,17 +12,17 @@ from cnn_env import CNNEnv
 from feature_extractor import UTTTFeatureExtractor
 
 # ── Hyperparameters ───────────────────────────────────────────────────────────
-TOTAL_TIMESTEPS     = 1_000_000
+TOTAL_TIMESTEPS     = 500_000
 N_STEPS             = 2048       # rollout length (timesteps per update)
-LEARNING_RATE       = 3e-4
+LEARNING_RATE       = 1e-4
 N_FILTERS           = 16
-FEATURES_DIM        = 256
+FEATURES_DIM        = 64
 EVAL_FREQ_ROLLOUTS  = 10         # evaluate every N rollouts
 N_EVAL_GAMES        = 100        # games per evaluation checkpoint
 
 MODEL_DIR           = os.path.join(_DIR, "models_seed")
-MODEL_PATH          = os.path.join(MODEL_DIR, "uttt_cnn_seed")
-CSV_PATH            = os.path.join(_DIR, "diagnostics_seed_16f_1M.csv")
+MODEL_PATH          = os.path.join(MODEL_DIR, "uttt_cnn_seed_fd64")
+CSV_PATH            = os.path.join(_DIR, "diagnostics_cnn_fd64.csv")
 # ─────────────────────────────────────────────────────────────────────────────
 
 
